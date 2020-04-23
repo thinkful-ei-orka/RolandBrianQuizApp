@@ -42,10 +42,18 @@ const question =
   <span class="questions last" id = score>x out of y</span><br>
   <button type="submit" form="form1" value="Submit">Submit</button>      </form>
   </div>`
+
+  const endQuiz = 
+  `<div class = 'container'>
+  <h2 class = 'status'>Complete</h2>
+  <form class="innerQuiz all" id = 'quizForm'>
+  <button type="submit" form="form1" value="retake">Retake</button>
+  </form>
+  </div>`;
 /**
  * Example store structure
  */
-const store = {
+const quizData = {
   // 5 or more questions are required
   questions: [
     {
@@ -122,11 +130,40 @@ const store = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
+function firstPage (){
+
+}
+function questionPage(questionNumber){
+
+}
+function lastPage (){
+
+}
 
 /********** RENDER FUNCTION(S) **********/
-
+function renderMain (str){
+  $('main').html(str);
+}
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+function btnClick (){
+
+}
+function handleBtnClick(){
+
+}
+function isAnswerCorrect (){
+
+}
+function answerIsWrong(){
+
+}
+function answerIsRight(){
+  
+}
+
+// call back
+$(renderMain(startQuiz));
