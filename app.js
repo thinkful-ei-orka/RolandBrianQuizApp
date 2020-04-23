@@ -75,7 +75,7 @@ const quizData = {
         '2020'
       ],
       correctAnswer: '2020'
-    }
+    },
     {
       question: 'In Minnesota it is illegal to tease what type of animal?',
       answers: [
@@ -85,7 +85,7 @@ const quizData = {
         'Dog'
       ],
       correctAnswer: 'Skunk'
-    }
+    },
     {
       question: 'The average person does what thirteen times a day?',
       answers: [
@@ -95,7 +95,7 @@ const quizData = {
         'Laughs'
       ],
       correctAnswer: 'Laughs'
-    }
+    },
     {
       question: 'On Sunday in Florida it is illegal for a single woman to do what?',
       answers: [
@@ -142,6 +142,7 @@ function lastPage (){
 
 /********** RENDER FUNCTION(S) **********/
 function renderMain (str){
+  console.log('working?');
   $('main').html(str);
 }
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -162,7 +163,7 @@ function answerIsWrong(){
 
 }
 function answerIsRight(){
-  
+
 }
 
 // call back
