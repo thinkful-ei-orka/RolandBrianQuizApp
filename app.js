@@ -21,7 +21,7 @@ const startQuiz =
   `<div class = 'container'>
   <h2 class = 'status'>Start Quiz</h2>
   <form class="innerQuiz all" id = 'quizForm'>
-  <button type="submit" form="form1" value="startQuiz">Start</button>
+  <button type="submit" form="#quizForm" value="startQuiz">Start Quiz</button>
   </form>
   </div>`;
 
@@ -38,15 +38,16 @@ const question =
     <label for = 'answer3'class="questions"> Answer3</label><br>
     <input type = 'radio' id = 'answer4' name = 'answer4'class="questions" >
     <label for = 'answer4'class="questions"> Answer4</label><br>
-  </input>
-  <span class="questions last" id = score>x out of y</span><br>
-  <button type="submit" form="form1" value="Submit">Submit</button>      </form>
+  </input><br>
+  <span class="questions last" id = score>x out of y</span><br><br>
+  <button type="submit" form="#quizForm" value="Submit">Submit</button>      </form>
   </div>`
 
   const endQuiz = 
   `<div class = 'container'>
   <h2 class = 'status'>Complete</h2>
   <form class="innerQuiz all" id = 'quizForm'>
+  <span class="questions last" id = score>x out of y</span><br><br>
   <button type="submit" form="form1" value="retake">Retake</button>
   </form>
   </div>`;
@@ -151,7 +152,14 @@ function renderMain (str){
 
 // These functions handle events (submit, click, etc)
 function btnClick (){
+ // $("main").submit(function (event) {
 
+   // console.log('try')
+   // event.preventDefault();
+  //});
+  $('main').on('submit', '#quizForm', () => {
+  console.log('btnClick')
+  })
 }
 function handleBtnClick(){
 
@@ -167,4 +175,5 @@ function answerIsRight(){
 }
 
 // call back
-$(renderMain(startQuiz));
+$(renderMain(question));
+$(btnClick);

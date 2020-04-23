@@ -1,7 +1,14 @@
+* {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .container {
   border: solid black 4px;
   border-radius: 5%;
   width: 90%;
+  padding-bottom: 15px;
 }
 .container {
 
