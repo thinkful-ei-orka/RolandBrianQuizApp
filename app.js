@@ -17,7 +17,7 @@
   * Use responsive design
   * Be fully usable by keyboard
   */
-const startQuiz = 
+const startPage = 
   `<div class = 'container'>
   <h2 class = 'status'>Start Quiz</h2>
   <form class="innerQuiz all" id = 'quizForm'>
@@ -25,20 +25,29 @@ const startQuiz =
   </form>
   </div>`;
 
-const question = 
+const questionPage = 
   `<div class = 'container'>
   <h2 class = 'status'>Filler</h2>
   <form class="innerQuiz all" id = 'quizForm'>
-    <p class="questions">Question</p>
+    <p class="question">
+    ${quizData.questions[quizData.questionNumber-1].question}
+    </p>
     <input type = 'radio' id = 'answer1' name = 'answer1'class="questions" >
-    <label for = 'answer1'class="questions"> Answer1</label><br>
+    <label for = 'answer1'class="questions">
+    ${quizData.questions[quizData.questionNumber-1].answers[0]}
+    </label><br>
     <input type = 'radio' id = 'answer2' name = 'answer2'class="questions" >
-    <label for = 'answer2'class="questions"> Answer2</label><br>
+    <label for = 'answer2'class="questions">
+    ${quizData.questions[quizData.questionNumber-1].answers[1]}
+    </label><br>
     <input type = 'radio' id = 'answer3' name = 'answer3' class="questions">
-    <label for = 'answer3'class="questions"> Answer3</label><br>
-    <input type = 'radio' id = 'answer4' name = 'answer4'class="questions" >
-    <label for = 'answer4'class="questions"> Answer4</label><br>
-  </input><br>
+    <label for = 'answer3'class="questions">
+    ${quizData.questions[quizData.questionNumber-1].answers[2]}
+    </label><br>
+     <input type = 'radio' id = 'answer4' name = 'answer4'class="questions" >
+    <label for = 'answer4'class="questions">
+    ${quizData.questions[quizData.questionNumber-1].answers[3]}</label><br>
+    </input><br>
   <span class="questions last" id = score>x out of y</span><br><br>
   <button type="submit" value="Submit">Submit</button>      </form>
   </div>`
@@ -52,7 +61,7 @@ const question =
   </form>
   </div>`;
 
-  const endQuiz = 
+  const endPage = 
   `<div class = 'container'>
   <h2 class = 'status'>Complete</h2>
   <form class="innerQuiz all" id = 'quizForm'>
@@ -117,9 +126,12 @@ const quizData = {
       correctAnswer: 'Sky dive'
     }
   ],
-  quizStarted: false,
-  questionNumber: 0,
-  score: 0
+  questionNumber: 1,
+  score: 0,
+  answerCorrect: false,
+  state: 'startPage'
+  
+  
 };
 
 /**
@@ -144,10 +156,13 @@ function firstPage (){
 
 }
 function questionPage(questionNumber){
-
+  
+}
+function resultsPage (){
+  
 }
 function lastPage (){
-
+  
 }
 
 /********** RENDER FUNCTION(S) **********/
@@ -163,28 +178,74 @@ function renderMain (str){
 function btnClick (){
   
   $('main').on('submit', '#quizForm', () => {
+    //
+    handleBtnClick();
     
-  console.log('btnClick')
-  event.preventDefault();
-  console.log($(event.currentTarget).attr('class'))
-  })
+    // console.log('btnClick');
+    event.preventDefault();
+  // console.log($(event.currentTarget;
+});
+}
+
+function changePages(state, questionNumber) {
+  // check state
+  switch(state) {
+    case 'start':
+      renderMain(question)
+    case 'question':
+      //move to result
+    case 'result':
+    //if question 5
+    //move to end
+    // else move to question
+    case 'end':
+      //move to start
+  }
+  // check question number
+
+  // change page
+
+    // is question 5
+      //is also results
+
 }
 function readRadioButtons(){
   
 }
 function handleBtnClick(){
-
+  // get state 
+  // get questionNumber
+  // call changePages 
 }
 function isAnswerCorrect (){
 
 }
 function answerIsWrong(){
-
+  
 }
 function answerIsRight(){
-
+  
 }
 
 // call back
-$(renderMain(resultPage));
+$(renderMain(questionPage));
 $(btnClick);
+//'question' 'result' 'end'
+
+//first page
+//questionNumber to 1
+//state moves to question
+
+
+//results page
+  //change state to result
+  // check if answer is correct 
+    // up score if correct
+    // 
+//select state question page
+  // load q page with q number
+  // if correct change score and reset answer correct to false
+  // if state is result and questiinNumber<5 
+      //state changes back to question
+      //q = q++
+      //else endpage
