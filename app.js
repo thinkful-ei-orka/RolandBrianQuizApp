@@ -169,6 +169,9 @@ function btnClick (){
   console.log($(event.currentTarget).attr('class'))
   })
 }
+function readRadioButtons(){
+  
+}
 function handleBtnClick(){
 
 }
