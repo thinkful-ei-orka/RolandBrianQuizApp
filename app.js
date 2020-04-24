@@ -43,6 +43,15 @@ const question =
   <button type="submit" value="Submit">Submit</button>      </form>
   </div>`
 
+  const resultPage = 
+  `<div class = 'container'>
+  <h2 class = 'status'>Correct/Incorrect</h2>
+  <form class="innerQuiz all" id = 'quizForm'>
+  <span class="questions last" id = score>__ is the correct answer. Great Job!</span><br><br>
+  <button type="submit" value="next">Next question</button>
+  </form>
+  </div>`;
+
   const endQuiz = 
   `<div class = 'container'>
   <h2 class = 'status'>Complete</h2>
@@ -174,5 +183,5 @@ function answerIsRight(){
 }
 
 // call back
-$(renderMain(question));
+$(renderMain(resultPage));
 $(btnClick);
