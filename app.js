@@ -21,7 +21,7 @@ const startQuiz =
   `<div class = 'container'>
   <h2 class = 'status'>Start Quiz</h2>
   <form class="innerQuiz all" id = 'quizForm'>
-  <button type="submit" form="#quizForm" value="startQuiz">Start Quiz</button>
+  <button type="submit"  value="startQuiz">Start Quiz</button>
   </form>
   </div>`;
 
@@ -40,7 +40,7 @@ const question =
     <label for = 'answer4'class="questions"> Answer4</label><br>
   </input><br>
   <span class="questions last" id = score>x out of y</span><br><br>
-  <button type="submit" form="#quizForm" value="Submit">Submit</button>      </form>
+  <button type="submit" value="Submit">Submit</button>      </form>
   </div>`
 
   const endQuiz = 
@@ -48,7 +48,7 @@ const question =
   <h2 class = 'status'>Complete</h2>
   <form class="innerQuiz all" id = 'quizForm'>
   <span class="questions last" id = score>x out of y</span><br><br>
-  <button type="submit" form="form1" value="retake">Retake</button>
+  <button type="submit" value="retake">Retake</button>
   </form>
   </div>`;
 /**
@@ -143,7 +143,7 @@ function lastPage (){
 
 /********** RENDER FUNCTION(S) **********/
 function renderMain (str){
-  console.log('working?');
+  //console.log('working?');
   $('main').html(str);
 }
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -152,13 +152,12 @@ function renderMain (str){
 
 // These functions handle events (submit, click, etc)
 function btnClick (){
- // $("main").submit(function (event) {
-
-   // console.log('try')
-   // event.preventDefault();
-  //});
+  
   $('main').on('submit', '#quizForm', () => {
+    
   console.log('btnClick')
+  event.preventDefault();
+  console.log($(event.currentTarget).attr('class'))
   })
 }
 function handleBtnClick(){
