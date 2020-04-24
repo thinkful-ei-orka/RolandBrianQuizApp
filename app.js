@@ -17,58 +17,7 @@
   * Use responsive design
   * Be fully usable by keyboard
   */
-const startPage = 
-  `<div class = 'container'>
-  <h2 class = 'status'>Start Quiz</h2>
-  <form class="innerQuiz all" id = 'quizForm'>
-  <button type="submit"  value="startQuiz">Start Quiz</button>
-  </form>
-  </div>`;
 
-const questionPage = 
-  `<div class = 'container'>
-  <h2 class = 'status'>Filler</h2>
-  <form class="innerQuiz all" id = 'quizForm'>
-    <p class="question">
-    ${quizData.questions[quizData.questionNumber-1].question}
-    </p>
-    <input type = 'radio' id = 'answer1' name = 'answer1'class="questions" >
-    <label for = 'answer1'class="questions">
-    ${quizData.questions[quizData.questionNumber-1].answers[0]}
-    </label><br>
-    <input type = 'radio' id = 'answer2' name = 'answer2'class="questions" >
-    <label for = 'answer2'class="questions">
-    ${quizData.questions[quizData.questionNumber-1].answers[1]}
-    </label><br>
-    <input type = 'radio' id = 'answer3' name = 'answer3' class="questions">
-    <label for = 'answer3'class="questions">
-    ${quizData.questions[quizData.questionNumber-1].answers[2]}
-    </label><br>
-     <input type = 'radio' id = 'answer4' name = 'answer4'class="questions" >
-    <label for = 'answer4'class="questions">
-    ${quizData.questions[quizData.questionNumber-1].answers[3]}</label><br>
-    </input><br>
-  <span class="questions last" id = score>x out of y</span><br><br>
-  <button type="submit" value="Submit">Submit</button>      </form>
-  </div>`
-
-  const resultPage = 
-  `<div class = 'container'>
-  <h2 class = 'status'>Correct/Incorrect</h2>
-  <form class="innerQuiz all" id = 'quizForm'>
-  <span class="questions last" id = score>__ is the correct answer. Great Job!</span><br><br>
-  <button type="submit" value="next">Next question</button>
-  </form>
-  </div>`;
-
-  const endPage = 
-  `<div class = 'container'>
-  <h2 class = 'status'>Complete</h2>
-  <form class="innerQuiz all" id = 'quizForm'>
-  <span class="questions last" id = score>x out of y</span><br><br>
-  <button type="submit" value="retake">Retake</button>
-  </form>
-  </div>`;
 /**
  * Example store structure
  */
@@ -126,14 +75,13 @@ const quizData = {
       correctAnswer: 'Sky dive'
     }
   ],
-  questionNumber: 1,
+  questionNumber: 0,
   score: 0,
   answerCorrect: false,
-  state: 'startPage'
+  state: 'quizStart'
   
   
 };
-
 /**
  * 
  * Technical requirements:
@@ -152,17 +100,58 @@ const quizData = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
-function firstPage (){
-
+function startQuizPage (){
+ return `<div class = 'container'>
+ <h2 class = 'status'>Start Quiz</h2>
+ <form class="innerQuiz all" id = 'quizForm'>
+ <button type="submit"  value="startQuiz">Start Quiz</button>
+ </form>
+ </div>`;
 }
-function questionPage(questionNumber){
-  
+function startQuestionPage(){
+  return `<div class = 'container'>
+  <h2 class = 'status'>Question: ${quizData.questionNumber} out of 5</h2>
+  <form class="innerQuiz all" id = 'quizForm'>
+    <h3 class="question">
+    ${quizData.questions[quizData.questionNumber-1].question}
+    </h3>
+    <input type = 'radio' id = 'answer1' name = 'answer'class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[0]} >
+    <label for = 'answer1'class="answerLabel">
+    ${quizData.questions[quizData.questionNumber-1].answers[0]}
+    </label><br>
+    <input type = 'radio' id = 'answer2' name = 'answer'class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[1]}>
+    <label for = 'answer2'class="answerLabel">
+    ${quizData.questions[quizData.questionNumber-1].answers[1]}
+    </label><br>
+    <input type = 'radio' id = 'answer3' name = 'answer' class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[2]}>
+    <label for = 'answer3'class="answerLabel">
+    ${quizData.questions[quizData.questionNumber-1].answers[2]}
+    </label><br>
+     <input type = 'radio' id = 'answer4' name = 'answer'class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[3]}>
+    <label for = 'answer4'class="answerLabel">
+    ${quizData.questions[quizData.questionNumber-1].answers[3]}</label><br>
+    </input><br>
+  <h3 class="questions last" id = score>Score ${quizData.score} out of ${quizData.questionNumber}</h3><br><br>
+  <button type="submit" value="Submit">Submit</button>      </form>
+  </div>`
 }
-function resultsPage (){
-  
+function startResultsPage (){
+  return `<div class = 'container'>
+  <h2 class = 'status'>Correct/Incorrect</h2>
+  <form class="innerQuiz all" id = 'quizForm'>
+  <span class="questions last" id = score>__ is the correct answer. Great Job!</span><br><br>
+  <button type="submit" value="next">Next question</button>
+  </form>
+  </div>`;
 }
-function lastPage (){
-  
+function startLastPage (){
+  return `<div class = 'container'>
+  <h2 class = 'status'>Complete</h2>
+  <form class="innerQuiz all" id = 'quizForm'>
+  <span class="questions last" id = score>x out of y</span><br><br>
+  <button type="submit" value="retake">Retake</button>
+  </form>
+  </div>`;
 }
 
 /********** RENDER FUNCTION(S) **********/
@@ -179,28 +168,41 @@ function btnClick (){
   
   $('main').on('submit', '#quizForm', () => {
     //
-    handleBtnClick();
-    
-    // console.log('btnClick');
+    //handleBtnClick();
+    // change pages
+    changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect)
+    console.log($("input[name='answer']:checked").val());
     event.preventDefault();
   // console.log($(event.currentTarget;
 });
 }
 
-function changePages(state, questionNumber) {
+function changePages(state, questionNumber,IsCorrect) {
   // check state
+  //console.log (quizData.state);
   switch(state) {
-    case 'start':
-      renderMain(question)
-    case 'question':
-      //move to result
-    case 'result':
+    case 'quizStart':
+      // call renderMain(question)
+      renderMain(startQuizPage());
+      quizData.state = "quizQuestion";
+      quizData.questionNumber = quizData.questionNumber + 1;
+     break;
+    case 'quizQuestion':
+      //call move to result
+      renderMain(startQuestionPage());
+      quizData.state = "quizResult";
+      break;
+    case 'quizResult':
     //if question 5
-    //move to end
-    // else move to question
-    case 'end':
-      //move to start
+    //call move to end
+    // call else move to question
+    renderMain(startResultsPage());
+    break;
+    case 'quizEnd':
+      //call move to start
+      break;
   }
+
   // check question number
 
   // change page
@@ -210,12 +212,8 @@ function changePages(state, questionNumber) {
 
 }
 function readRadioButtons(){
+  //console.log('radioClick');
   
-}
-function handleBtnClick(){
-  // get state 
-  // get questionNumber
-  // call changePages 
 }
 function isAnswerCorrect (){
 
@@ -228,8 +226,9 @@ function answerIsRight(){
 }
 
 // call back
-$(renderMain(questionPage));
+$(changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect));
 $(btnClick);
+$(readRadioButtons);
 //'question' 'result' 'end'
 
 //first page
@@ -248,4 +247,3 @@ $(btnClick);
   // if state is result and questiinNumber<5 
       //state changes back to question
       //q = q++
-      //else endpage
