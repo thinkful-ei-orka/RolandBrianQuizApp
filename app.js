@@ -115,19 +115,19 @@ function startQuestionPage(){
     <h3 class="question">
     ${quizData.questions[quizData.questionNumber-1].question}
     </h3>
-    <input type = 'radio' id = 'answer1' name = 'answer'class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[0]} >
+    <input type = 'radio' id = 'answer1' name = 'answer'class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[0]}' >
     <label for = 'answer1'class="answerLabel">
     ${quizData.questions[quizData.questionNumber-1].answers[0]}
     </label><br>
-    <input type = 'radio' id = 'answer2' name = 'answer'class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[1]}>
+    <input type = 'radio' id = 'answer2' name = 'answer'class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[1]}'>
     <label for = 'answer2'class="answerLabel">
     ${quizData.questions[quizData.questionNumber-1].answers[1]}
     </label><br>
-    <input type = 'radio' id = 'answer3' name = 'answer' class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[2]}>
+    <input type = 'radio' id = 'answer3' name = 'answer' class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[2]}'>
     <label for = 'answer3'class="answerLabel">
     ${quizData.questions[quizData.questionNumber-1].answers[2]}
     </label><br>
-     <input type = 'radio' id = 'answer4' name = 'answer'class="answers" val = ${quizData.questions[quizData.questionNumber-1].answers[3]}>
+     <input type = 'radio' id = 'answer4' name = 'answer'class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[3]}'>
     <label for = 'answer4'class="answerLabel">
     ${quizData.questions[quizData.questionNumber-1].answers[3]}</label><br>
     </input><br>
@@ -168,13 +168,31 @@ function btnClick (){
   
   $('main').on('submit', '#quizForm', () => {
     //
-    //handleBtnClick();
+  
+  //handleBtnClick();
     // change pages
+    
+    isAnswerCorrect($(".answers:checked").val());
     changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect)
-    console.log($("input[name='answer']:checked").val());
+    
     event.preventDefault();
   // console.log($(event.currentTarget;
 });
+}
+function readRadioButtons(){
+  
+}
+function isAnswerCorrect (currentAnswer){
+  if currentAnswer === quizData.questions[questionNumber-1]{
+    return true;
+  }
+  return false;
+}
+function answerIsWrong(){
+  
+}
+function answerIsRight(){
+  
 }
 
 function changePages(state, questionNumber,IsCorrect) {
@@ -211,21 +229,7 @@ function changePages(state, questionNumber,IsCorrect) {
       //is also results
 
 }
-function readRadioButtons(){
-  //console.log('radioClick');
-  console.log($( "answer" ).on( "click", function() {
-    $( ".answers" ).html( $( "input:checked" ).val() + " is checked!" );
-  }));
-}
-function isAnswerCorrect (){
 
-}
-function answerIsWrong(){
-  
-}
-function answerIsRight(){
-  
-}
 
 // call back
 $(changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect));
