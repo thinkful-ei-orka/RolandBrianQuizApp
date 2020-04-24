@@ -139,7 +139,7 @@ function startResultsPage (){
   return `<div class = 'container'>
   <h2 class = 'status'>Correct/Incorrect</h2>
   <form class="innerQuiz all" id = 'quizForm'>
-  <span class="questions last" id = score>__ is the correct answer. Great Job!</span><br><br>
+  <span class="questions last" id = score>${resultMessage()}</span><br><br>
   <button type="submit" value="next">Next question</button>
   </form>
   </div>`;
@@ -173,6 +173,7 @@ function btnClick (){
     // change pages
     
     isAnswerCorrect($(".answers:checked").val());
+    
     changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect)
     
     event.preventDefault();
@@ -183,17 +184,22 @@ function readRadioButtons(){
   
 }
 function isAnswerCorrect (currentAnswer){
-  if currentAnswer === quizData.questions[questionNumber-1]{
-    return true;
+  if (currentAnswer === quizData.questions[quizData.questionNumber-1].correctAnswer) {
+    quizData.answerCorrect = true;
+  } else {
+    quizData.answerCorrect = false;
   }
-  return false;
-}
-function answerIsWrong(){
   
 }
-function answerIsRight(){
-  
+function resultMessage() {
+  if (answerCorrect = false){
+    return (`Wrong! ${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer.`)
+  } else {
+    return ('${str} is the correct answer. Great job!');
+  }
 }
+
+
 
 function changePages(state, questionNumber,IsCorrect) {
   // check state
@@ -214,6 +220,7 @@ function changePages(state, questionNumber,IsCorrect) {
     //if question 5
     //call move to end
     // call else move to question
+    isAnswerCorrect();
     renderMain(startResultsPage());
     break;
     case 'quizEnd':
