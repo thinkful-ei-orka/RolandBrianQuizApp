@@ -213,7 +213,9 @@ function changePages(state, questionNumber,IsCorrect) {
 }
 function readRadioButtons(){
   //console.log('radioClick');
-  
+  console.log($( "answer" ).on( "click", function() {
+    $( ".answers" ).html( $( "input:checked" ).val() + " is checked!" );
+  }));
 }
 function isAnswerCorrect (){
 
