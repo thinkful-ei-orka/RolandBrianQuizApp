@@ -137,10 +137,10 @@ function startQuestionPage(){
 }
 function startResultsPage (){
   return `<div class = 'container'>
-  <h2 class = 'status'>Correct/Incorrect</h2>
+  <h2 class = 'status'>${resultHeader()}</h2>
   <form class="innerQuiz all" id = 'quizForm'>
   <span class="questions last" id = score>${resultMessage()}</span><br><br>
-  <button type="submit" value="next">Next question</button>
+  ${handleBtnState()}
   </form>
   </div>`;
 }
@@ -193,12 +193,29 @@ function isAnswerCorrect (currentAnswer){
   }
   
 }
+function resultHeader(){
+  if (quizData.answerCorrect === false){
+    return ('Incorrect')
+  } else {
+    return ('Correct')
+  }
+}
+
 function resultMessage() {
   if (quizData.answerCorrect === false){
-    return (`Wrong! ${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer.`)
+    return (`${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer.`);
   } else {
     return (`${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer. Great job!`);
   }
+}
+
+function handleBtnState(){
+  if (quizData.answerCorrect === false){
+    return ('<button type="submit" value="next" id ="tryAgain">Try Again</button>');
+  } else {
+    return ('<button type="submit" value="next" id= "nextQuestion">Next question</button>');
+  }
+     
 }
 
 
