@@ -167,24 +167,22 @@ function renderMain (str){
 function btnClick (){
   
   $('main').on('submit', '#quizForm', () => {
-    //
-  
-  //handleBtnClick();
-    // change pages
-    
-    isAnswerCorrect($(".answers:checked").val());
-    
-    changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect)
+      
+    if (quizData.state === 'quizResult'){
+      isAnswerCorrect($(".answers:checked").val());
+    }
+    changePages(quizData.state,quizData.questionNumber)
     
     event.preventDefault();
-  // console.log($(event.currentTarget;
+ 
 });
 }
-function readRadioButtons(){
-  
-}
+
 function isAnswerCorrect (currentAnswer){
+  console.log(quizData.questions[quizData.questionNumber-1].correctAnswer);
+  console.log(currentAnswer);
   if (currentAnswer === quizData.questions[quizData.questionNumber-1].correctAnswer) {
+    console.log('correct');
     quizData.answerCorrect = true;
     quizData.score = quizData.score + 1;
     // console.log('true')
@@ -221,48 +219,50 @@ function handleBtnState(){
 
 
 
-function changePages(state, questionNumber,IsCorrect) {
+function changePages(state, questionNumber) {
   // check state
   //console.log (quizData.state);
   switch(state) {
     case 'quizStart':
+      console.log('start')
       // call renderMain(question)
       renderMain(startQuizPage());
       quizData.state = "quizQuestion";
       quizData.questionNumber = quizData.questionNumber + 1;
      break;
     case 'quizQuestion':
+      console.log('question')
       //call move to result
-      renderMain(startResultsPage());
+      renderMain(startQuestionPage());
       quizData.state = "quizResult";
       break;
     case 'quizResult':
+      console.log('result')
     //if question 5
     //call move to end
     // call else move to question
     //isAnswerCorrect();
+    renderMain(startResultsPage());
     if (quizData.answerCorrect === true){
       if (quizData.questionNumber === 5){
-        //go to the next question
-        renderMain(startLastPage());
+        //go to the quizEnd
         quizData.state = "quizEnd";
         quizData.questionNumber = 0;
-        
+        //go to the next question
       } else {
         quizData.state = "quizQuestion";
         quizData.questionNumber = quizData.questionNumber + 1;
-        renderMain(startQuestionPage());
-      
-        
+        //renderMain(startQuestionPage());       
     } 
       } else {
         //stay on the same question
         quizData.state = "quizQuestion";
-        renderMain(startQuestionPage());
+        // renderMain(startQuestionPage());
     }
     //renderMain(startResultsPage());
     break;
     case 'quizEnd':
+      console.log('end')
       //call move to start
       renderMain(startLastPage());
       break;
@@ -278,14 +278,16 @@ function changePages(state, questionNumber,IsCorrect) {
 }
 function startHere(){
   if (quizData.state === "quizStart"){
-    $(changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect));
+   // console.log(quizData.state);
+   changePages(quizData.state,quizData.questionNumber);
+   //renderMain(startQuizPage());
   }
 }
 
 // call back
 $(startHere);
 $(btnClick);
-$(readRadioButtons);
+//$(readRadioButtons);
 //'question' 'result' 'end'
 
 //first page
