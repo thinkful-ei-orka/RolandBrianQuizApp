@@ -224,11 +224,12 @@ function changePages(state, questionNumber) {
   //console.log (quizData.state);
   switch(state) {
     case 'quizStart':
-      console.log('start')
+      //console.log('start')
       // call renderMain(question)
       renderMain(startQuizPage());
       quizData.state = "quizQuestion";
       quizData.questionNumber = quizData.questionNumber + 1;
+
      break;
     case 'quizQuestion':
       console.log('question')
