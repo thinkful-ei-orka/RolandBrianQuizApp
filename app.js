@@ -186,16 +186,18 @@ function readRadioButtons(){
 function isAnswerCorrect (currentAnswer){
   if (currentAnswer === quizData.questions[quizData.questionNumber-1].correctAnswer) {
     quizData.answerCorrect = true;
+    console.log('true')
   } else {
     quizData.answerCorrect = false;
+    console.log('false')
   }
   
 }
 function resultMessage() {
-  if (answerCorrect = false){
+  if (quizData.answerCorrect === false){
     return (`Wrong! ${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer.`)
   } else {
-    return ('${str} is the correct answer. Great job!');
+    return (`${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer. Great job!`);
   }
 }
 
@@ -220,7 +222,7 @@ function changePages(state, questionNumber,IsCorrect) {
     //if question 5
     //call move to end
     // call else move to question
-    isAnswerCorrect();
+    //isAnswerCorrect();
     renderMain(startResultsPage());
     break;
     case 'quizEnd':
