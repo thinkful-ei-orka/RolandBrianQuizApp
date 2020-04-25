@@ -186,10 +186,11 @@ function readRadioButtons(){
 function isAnswerCorrect (currentAnswer){
   if (currentAnswer === quizData.questions[quizData.questionNumber-1].correctAnswer) {
     quizData.answerCorrect = true;
-    console.log('true')
+    quizData.score = quizData.score + 1;
+    // console.log('true')
   } else {
     quizData.answerCorrect = false;
-    console.log('false')
+    // console.log('false')
   }
   
 }
@@ -205,7 +206,7 @@ function resultMessage() {
   if (quizData.answerCorrect === false){
     return (`${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer.`);
   } else {
-    return (`${quizData.questions[quizData.questionNumber-1].correctAnswer} is the correct answer. Great job!`);
+    return (`${quizData.questions[quizData.questionNumber-2].correctAnswer} is the correct answer. Great job!`);
   }
 }
 
@@ -232,7 +233,7 @@ function changePages(state, questionNumber,IsCorrect) {
      break;
     case 'quizQuestion':
       //call move to result
-      renderMain(startQuestionPage());
+      renderMain(startResultsPage());
       quizData.state = "quizResult";
       break;
     case 'quizResult':
@@ -240,10 +241,30 @@ function changePages(state, questionNumber,IsCorrect) {
     //call move to end
     // call else move to question
     //isAnswerCorrect();
-    renderMain(startResultsPage());
+    if (quizData.answerCorrect === true){
+      if (quizData.questionNumber === 5){
+        //go to the next question
+        renderMain(startLastPage());
+        quizData.state = "quizEnd";
+        quizData.questionNumber = 0;
+        
+      } else {
+        quizData.state = "quizQuestion";
+        quizData.questionNumber = quizData.questionNumber + 1;
+        renderMain(startQuestionPage());
+      
+        
+    } 
+      } else {
+        //stay on the same question
+        quizData.state = "quizQuestion";
+        renderMain(startQuestionPage());
+    }
+    //renderMain(startResultsPage());
     break;
     case 'quizEnd':
       //call move to start
+      renderMain(startLastPage());
       break;
   }
 
@@ -255,10 +276,14 @@ function changePages(state, questionNumber,IsCorrect) {
       //is also results
 
 }
-
+function startHere(){
+  if (quizData.state === "quizStart"){
+    $(changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect));
+  }
+}
 
 // call back
-$(changePages(quizData.state,quizData.questionNumber,quizData.answerCorrect));
+$(startHere);
 $(btnClick);
 $(readRadioButtons);
 //'question' 'result' 'end'
