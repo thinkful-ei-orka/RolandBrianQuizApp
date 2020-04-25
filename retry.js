@@ -104,7 +104,7 @@ const quizData = {
    return `<div class = 'container'>
    <h2 class = 'status'>Start Quiz</h2>
    <form class="innerQuiz all" id = 'quizForm'>
-   <button type="submit"  value="startQuiz">Start Quiz</button>
+   <button type="submit"  class='btnAlign' value="startQuiz">Start Quiz</button>
    </form>
    </div>`;
   }
@@ -115,24 +115,25 @@ const quizData = {
       <h3 class="question">
       ${quizData.questions[quizData.questionNumber-1].question}
       </h3>
-      <input type = 'radio' id = 'answer1' name = 'answer'class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[0]}' >
+      <input type = 'radio' id = 'answer1' name = 'answer'class="answers lefty" value = '${quizData.questions[quizData.questionNumber-1].answers[0]}' >
       <label for = 'answer1'class="answerLabel">
       ${quizData.questions[quizData.questionNumber-1].answers[0]}
       </label><br>
-      <input type = 'radio' id = 'answer2' name = 'answer'class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[1]}'>
+      <input type = 'radio' id = 'answer2' name = 'answer'class="answers lefty" value = '${quizData.questions[quizData.questionNumber-1].answers[1]}'>
       <label for = 'answer2'class="answerLabel">
       ${quizData.questions[quizData.questionNumber-1].answers[1]}
       </label><br>
-      <input type = 'radio' id = 'answer3' name = 'answer' class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[2]}'>
+      <input type = 'radio' id = 'answer3' name = 'answer' class="answers lefty" value = '${quizData.questions[quizData.questionNumber-1].answers[2]}'>
       <label for = 'answer3'class="answerLabel">
       ${quizData.questions[quizData.questionNumber-1].answers[2]}
       </label><br>
-       <input type = 'radio' id = 'answer4' name = 'answer'class="answers" value = '${quizData.questions[quizData.questionNumber-1].answers[3]}'>
+       <input type = 'radio' id = 'answer4' name = 'answer'class="answers lefty" value = '${quizData.questions[quizData.questionNumber-1].answers[3]}'>
       <label for = 'answer4'class="answerLabel">
       ${quizData.questions[quizData.questionNumber-1].answers[3]}</label><br>
       </input><br>
-    <h3 class="questions last" id = score>Score ${quizData.score} out of ${quizData.questionNumber}</h3><br><br>
-    <button type="submit" value="Submit">Submit</button>      </form>
+      <button type="submit" class='btnAlign' value="Submit">Submit</button>
+    <h3 class="questions last" id = score>Score ${quizData.score} out of ${quizData.questionNumber - 1}</h3><br><br>
+    </form>
     </div>`
   }
   function startResultsPage (){
@@ -149,7 +150,7 @@ const quizData = {
     <h2 class = 'status'>Complete</h2>
     <form class="innerQuiz all" id = 'quizForm'>
     <span class="questions last" id = score>You scored ${quizData.score} out of 5!</span><br><br>
-    <button type="submit" value="retake">Retake</button>
+    <button type="submit" class='btnAlign' value="retake">Retake</button>
     </form>
     </div>`;
   }
@@ -181,7 +182,7 @@ const quizData = {
   function isAnswerCorrect (currentAnswer){
     
     if (currentAnswer === quizData.questions[quizData.questionNumber-1].correctAnswer) {
-      console.log('correct');
+      // console.log('correct');
       quizData.answerCorrect = true;
       quizData.score = quizData.score + 1;
       // console.log('true')
@@ -208,9 +209,9 @@ const quizData = {
   
   function handleBtnState(){
     if (quizData.answerCorrect === false){
-      return ('<button type="submit" value="next" id ="tryAgain">Try Again</button>');
+      return ('<button type="submit" class="btnAlign" value="next" id ="tryAgain">Try Again</button>');
     } else {
-      return ('<button type="submit" value="next" id= "nextQuestion">Next question</button>');
+      return ('<button type="submit" class="btnAlign" value="next" id= "nextQuestion">Next question</button>');
     }
        
   }
@@ -230,13 +231,13 @@ const quizData = {
 
      break;
     case 'quizQuestion':
-      console.log('question')
+      // console.log('question')
       //call move to result
       renderMain(startQuestionPage());
       quizData.state = "quizResult";
       break;
     case 'quizResult':
-      console.log('result')
+      // console.log('result')
     //if question 5
     //call move to end
     // call else move to question
@@ -261,9 +262,11 @@ const quizData = {
     //renderMain(startResultsPage());
     break;
     case 'quizEnd':
-      console.log('end')
+      // console.log('end')
       //call move to start
       renderMain(startLastPage());
+      quizData.state = 'quizStart';
+      quizData.questionNumber = 0;
       break;
   }
   }

@@ -1,15 +1,53 @@
 * {
-  text-align: center;
+  /*text-align: left;*/
   margin-left: auto;
   margin-right: auto;
 }
+.btnAlign{
+  background-color: rgb(19, 71, 243); /* Green */
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: auto;
+  margin-left: auto;
+}
+h1 {
+  text-align: center;
+}
 
+h2 {
+  text-align: center;
+}
+
+h3{
+  margin-left: 25px;
+}
+
+.lefty{
+  margin-left: 25px;
+}
+
+
+.test{
+  padding-left: 15px;
+  margin-left: 15px;
+}
+
+.questions {
+  text-align: center;
+  font-size: 150%;
+}
 .container {
   border: solid black 4px;
   border-radius: 5%;
   width: 90%;
   padding-bottom: 15px;
 }
-.container {
 
-}
+
+
+
