@@ -25,54 +25,54 @@ const quizData = {
     // 5 or more questions are required
     questions: [
       {
-        question: 'Its illegal in Georgia to do what with a fork?',
+        question: 'Solve: 3x (x – 4)(3x + 5) = 0',
         answers: [
-          'Eat hamburgers',
-          'Run',
-          'Eat fried chicken',
-          'Sky dive'
+          '4,-5/3',
+          '-4,-5/3,3,0',
+          '-5/3,4,0',
+          '4,-5,0'
         ],
-        correctAnswer: 'Eat fried chicken'
+        correctAnswer: '-5/3,4,0'
       },
       {
-        question: 'What is the current year?',
+        question: 'Solve for x: 5x – 10 = 2 – 2x + 10(x – 3)',
         answers: [
-          '1970',
-          '2015',
-          '2019',
-          '2020'
+          '6',
+          '3',
+          'None of the above',
+          '-14'
         ],
-        correctAnswer: '2020'
+        correctAnswer: '6'
       },
       {
-        question: 'In Minnesota it is illegal to tease what type of animal?',
+        question: 'Which of the following is the least?',
         answers: [
-          'Rabbit',
-          'Skunk',
-          'Bear',
-          'Dog'
+          '.27',
+          '11%',
+          '3/8',
+          '2/11'
         ],
-        correctAnswer: 'Skunk'
+        correctAnswer: '11%'
       },
       {
-        question: 'The average person does what thirteen times a day?',
+        question: 'Solve: 1/3y + 28 = -5',
         answers: [
-          'Picks their nose',
-          'Sits down',
-          'Crys',
-          'Laughs'
+          '1',
+          'None of the above',
+          '-2',
+          '7/13'
         ],
-        correctAnswer: 'Laughs'
+        correctAnswer: 'None of the above'
       },
       {
-        question: 'On Sunday in Florida it is illegal for a single woman to do what?',
+        question: 'Evaluate 7m + 3mn when m = 8 and n = 14',
         answers: [
-          'Sky dive',
-          'Eat out',
-          'Drink alcohol',
-          'Dance'
+          '84',
+          '196',
+          '392',
+          '168'
         ],
-        correctAnswer: 'Sky dive'
+        correctAnswer: '392'
       }
     ],
     questionNumber: 0,

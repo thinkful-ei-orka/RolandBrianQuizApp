@@ -2,7 +2,21 @@
   /*text-align: left;*/
   margin-left: auto;
   margin-right: auto;
+  
 }
+
+
+h1{
+  color: rgb(19, 71, 243);
+  font-weight: 900;
+  font-size: 350%;
+  font: outline;
+  border-radius: 5%;
+  background-color: blanchedalmond;
+  width: 90%;
+  border: solid black 2px;
+}
+
 .btnAlign{
   background-color: rgb(19, 71, 243); /* Green */
  
@@ -10,7 +24,7 @@
   padding: 7px 15px;
   text-align: center;
   text-decoration: none;
-  border: solid, 5px, black;
+  border: solid black .5px;
   font-size: 16px;
   margin-right: auto;
   margin-left: auto;
@@ -24,6 +38,7 @@
 }
 
 .lefty{
+  
   padding-left: 15px;
   margin-left: 25px;
   margin-right: 25px;
@@ -34,10 +49,12 @@ s
 }
 
 .container {
-  border: solid black 4px;
+  border: solid black 2px;
   border-radius: 5%;
   width: 90%;
   padding-bottom: 15px;
+  background-color: blanchedalmond;
+  
 }
 
 .innerDiv{
@@ -45,7 +62,10 @@ s
   background-color: rgb(241, 147, 113);
   height: 50px;
 }
-
+body{
+  
+  background-image: url('https://image.shutterstock.com/image-vector/poster-name-school-subject-algebra-260nw-1550004938.jpg');
+}
  
 
 
